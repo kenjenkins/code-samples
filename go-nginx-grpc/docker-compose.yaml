@@ -1,0 +1,14 @@
+version: "3.2"
+
+services:
+  go-service:
+    build:
+      dockerfile: Dockerfile.go-service
+      context: .
+  nginx:
+    build:
+      dockerfile: Dockerfile.nginx
+      context: .
+    ports:
+      - "8080:8080"
+      - "8081:8081"

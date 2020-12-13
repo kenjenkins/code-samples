@@ -1,0 +1,4 @@
+FROM nginx:1.19.5
+
+COPY ssl.key ssl.cert /etc/ssl/certs/
+COPY nginx.conf /etc/nginx/conf.d/
