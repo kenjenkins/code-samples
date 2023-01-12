@@ -12,3 +12,15 @@ services:
     ports:
       - "8080:8080"
       - "8081:8081"
+
+  generate-cert:
+    build:
+      dockerfile: Dockerfile.openssl
+    volumes:
+      - ./:/cwd/
+    command: >
+      openssl req -x509 -nodes -days 30 -newkey rsa:2048
+      -subj '/CN=localhost' -addext 'subjectAltName=DNS:localhost'
+      -keyout /cwd/ssl.key -out /cwd/ssl.cert
+    profiles:
+      - generate-cert
